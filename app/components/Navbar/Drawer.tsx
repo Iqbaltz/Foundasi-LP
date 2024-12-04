@@ -28,7 +28,7 @@ const Drawer = ({ children, isOpen, setIsOpen }: DrawerProps) => {
           <header className="flex items-center px-4 py-4">
             <div className="flex flex-shrink-0 items-center border-right">
               <Link href="/" className="font-semibold text-2xl text-black">
-                Foundasi Solutions
+                Foundasi
               </Link>
             </div>
 

@@ -73,6 +73,9 @@ devDependencies:
   '@types/react-dom':
     specifier: 19.0.1
     version: 19.0.1
+  '@types/react-slick':
+    specifier: ^0.23.13
+    version: 0.23.13
   autoprefixer:
     specifier: ^10.4.20
     version: 10.4.20(postcss@8.5.1)
@@ -3500,6 +3503,12 @@ packages:
 
   /@types/react-dom@19.0.1:
     resolution: {integrity: sha512-hljHij7MpWPKF6u5vojuyfV0YA4YURsQG7KT6SzV0Zs2BXAtgdTxG6A229Ub/xiWV4w/7JL8fi6aAyjshH4meA==}
+    dependencies:
+      '@types/react': 19.0.1
+    dev: true
+
+  /@types/react-slick@0.23.13:
+    resolution: {integrity: sha512-bNZfDhe/L8t5OQzIyhrRhBr/61pfBcWaYJoq6UDqFtv5LMwfg4NsVDD2J8N01JqdAdxLjOt66OZEp6PX+dGs/A==}
     dependencies:
       '@types/react': 19.0.1
     dev: true

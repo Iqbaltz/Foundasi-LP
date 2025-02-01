@@ -26,6 +26,9 @@ dependencies:
   '@payloadcms/richtext-lexical':
     specifier: latest
     version: 3.15.1(@faceless-ui/modal@3.0.0-beta.2)(@faceless-ui/scroll-info@2.0.0-beta.0)(@lexical/headless@0.20.0)(@lexical/html@0.20.0)(@lexical/link@0.20.0)(@lexical/list@0.20.0)(@lexical/mark@0.20.0)(@lexical/react@0.20.0)(@lexical/rich-text@0.20.0)(@lexical/selection@0.20.0)(@lexical/table@0.20.0)(@lexical/utils@0.20.0)(@payloadcms/next@3.15.1)(@types/react@19.0.1)(lexical@0.20.0)(monaco-editor@0.52.2)(next@15.1.0)(payload@3.15.1)(react-dom@19.0.0)(react@19.0.0)(typescript@5.7.2)
+  clsx:
+    specifier: ^2.1.1
+    version: 2.1.1
   cross-env:
     specifier: ^7.0.3
     version: 7.0.3

@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 const Contactusform = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const [inputValues, setInputValues] = useState({
     name: '',
@@ -20,7 +21,7 @@ const Contactusform = () => {
   // FORM SUBMIT
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
-
+    setIsLoading(true)
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -41,6 +42,8 @@ const Contactusform = () => {
       console.error('Error submitting form:', error)
       alert('Something went wrong. Please try again.')
     }
+
+    setIsLoading(false)
   }
 
   const isDisabled = Object.values(inputValues).some((value) => value === '')
@@ -164,7 +167,7 @@ const Contactusform = () => {
                       </div>
                       <button
                         type="submit"
-                        disabled={isDisabled}
+                        disabled={isDisabled || isLoading}
                         className="bg-blue dark:hover:bg-primary-700 dark:bg-primary-600 disabled:opacity-50 px-5 py-3 rounded-lg focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800 w-full font-medium text-center text-sm text-white focus:outline-none"
                       >
                         Send message

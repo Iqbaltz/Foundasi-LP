@@ -1,4 +1,5 @@
-import Image from "next/image";
+import Image from 'next/image'
+import Link from 'next/link'
 
 const Banner = () => {
   return (
@@ -18,25 +19,23 @@ const Banner = () => {
             </h1>
           </div>
           <div className="my-7 text-center lg:text-start">
-            <button className="bg-blue hover:bg-hoblue hover:shadow-xl px-6 md:px-14 py-3 md:py-5 rounded-full font-semibold text-sm text-white md:text-xl">
-              Get Started
-            </button>
+            <Link
+              href="/start-project"
+              className="bg-blue hover:bg-hoblue hover:shadow-xl px-6 md:px-14 py-3 md:py-5 rounded-full font-semibold text-sm text-white md:text-xl"
+            >
+              Start A Project 🚀
+            </Link>
           </div>
         </div>
 
         {/* COLUMN-2 */}
 
         <div className="lg:block hidden lg:-m-24 lg:pt-20">
-          <Image
-            src="/images/banner/banner.svg"
-            alt="hero-image"
-            width={800}
-            height={642}
-          />
+          <Image src="/images/banner/banner.svg" alt="hero-image" width={800} height={642} />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Banner;
+export default Banner

@@ -25,7 +25,7 @@ html:not([data-scroll='0']) .navbar {
   width: 100%;
   transition: 0.4s linear;
   padding: 0px !important;
-  z-index: 3;
+  z-index: 30;
 }
 
 .navbar > div > div {

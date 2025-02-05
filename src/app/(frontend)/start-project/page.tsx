@@ -98,37 +98,55 @@ const StartProjectPage = (props: Props) => {
             </div>
           </div>
           <div className="gap-4 grid grid-cols-2">
-            <Field>
-              <Label className="block opacity-50 mb-2 font-medium text-gray-900 dark:text-gray-300">
-                Project status
-              </Label>
-              <Select
-                className={clsx(
-                  'block bg-white/5 mt-3 px-3 py-1.5 border-none rounded-lg w-full text-sm/6 appearance-none',
-                  'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-black/25',
-                  // Make the text of each option black on Windows
-                  '*:text-black',
-                )}
-                name="projectType"
-                aria-label="Type of Project"
+            <div>
+              <label
+                htmlFor="projectType"
+                className="block opacity-50 mb-2 font-medium text-gray-900 dark:text-gray-300"
               >
-                <option value="web">Web App</option>
-                <option value="mobile">Mobile App</option>
-                <option value="design">UI/UX Design</option>
-                <option value="logo">Logo Design</option>
-                <option value="copywriting">Copywriting a& Content Creation</option>
-              </Select>
-              <ChevronDownIcon
-                className="group top-2.5 right-2.5 absolute pointer-events-none fill-black/60 size-4"
-                aria-hidden="true"
-              />
-            </Field>
-            <Select name="budget" aria-label="Budget">
-              <option value="low">$100 - $500</option>
-              <option value="medium">$500 - $1,000</option>
-              <option value="big">$1,000 - $5,000</option>
-              <option value="super">$5,000+</option>
-            </Select>
+                Type of Project
+              </label>
+              <div className="relative">
+                <Select
+                  className={`block relative focus:z-10 focus:border-indigo-500 px-3 py-2 border border-linegrey rounded-md focus:ring-indigo-500 w-full text-gray-900 appearance-none focus:outline-none placeholder-gray-500`}
+                  name="projectType"
+                  aria-label="Type of Project"
+                >
+                  <option value="web">Web App</option>
+                  <option value="mobile">Mobile App</option>
+                  <option value="design">UI/UX Design</option>
+                  <option value="logo">Logo Design</option>
+                  <option value="copywriting">Copywriting a& Content Creation</option>
+                </Select>
+                <ChevronDownIcon
+                  className="group top-3 right-3 z-10 absolute pointer-events-none fill-black/60 size-4"
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="Budget"
+                className="block opacity-50 mb-2 font-medium text-gray-900 dark:text-gray-300"
+              >
+                Budget
+              </label>
+              <div className="relative">
+                <Select
+                  name="budget"
+                  aria-label="Budget"
+                  className={`block relative focus:z-10 focus:border-indigo-500 px-3 py-2 border border-linegrey rounded-md focus:ring-indigo-500 w-full text-gray-900 appearance-none focus:outline-none placeholder-gray-500`}
+                >
+                  <option value="low">$100 - $500</option>
+                  <option value="medium">$500 - $1,000</option>
+                  <option value="big">$1,000 - $5,000</option>
+                  <option value="super">$5,000+</option>
+                </Select>
+                <ChevronDownIcon
+                  className="group top-3 right-3 z-10 absolute pointer-events-none fill-black/60 size-4"
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
           </div>
           <div className="sm:col-span-2">
             <label

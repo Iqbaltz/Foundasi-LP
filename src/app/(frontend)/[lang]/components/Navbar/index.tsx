@@ -4,7 +4,7 @@
 import Navbar from './Navbar'
 import React, { useEffect } from 'react'
 
-const Navbarin: React.FC = () => {
+const Navbarin: React.FC<{ lang: string }> = ({ lang }) => {
   useEffect(() => {
     // The debounce function receives our function as a parameter
     const debounce = (fn: Function) => {
@@ -38,7 +38,7 @@ const Navbarin: React.FC = () => {
   }, [])
   return (
     <>
-      <Navbar />
+      <Navbar lang={lang} />
     </>
   )
 }

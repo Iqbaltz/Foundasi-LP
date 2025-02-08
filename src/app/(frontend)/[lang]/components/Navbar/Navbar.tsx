@@ -1,0 +1,147 @@
+'use client'
+
+import {
+  Disclosure,
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from '@headlessui/react'
+import Link from 'next/link'
+import React, { useEffect } from 'react'
+import { useRouter } from 'next/navigation' // For programmatic navigation
+import { Bars3Icon } from '@heroicons/react/24/outline'
+import Drawer from './Drawer'
+import Drawerdata from './Drawerdata'
+import Contactusform from './Contactus'
+
+interface NavigationItem {
+  name: string
+  href: string
+  current: boolean
+}
+
+const navigation: NavigationItem[] = [
+  { name: 'About Us', href: '#aboutus-section', current: false },
+  { name: 'Services', href: '#services-section', current: false },
+  { name: 'FAQ', href: '#faq-section', current: false },
+  { name: 'Blog', href: '#blog-section', current: false },
+  { name: 'Testimonial', href: '#testimonial-section', current: false },
+]
+
+const languages = [
+  { id: 'en-US', name: 'English', flag: '/images/flags/united-states.png' },
+  { id: 'id-ID', name: 'Indonesia', flag: '/images/flags/indonesia.png' },
+]
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
+
+const Navbar = ({ lang }: { lang: string }) => {
+  const [isOpen, setIsOpen] = React.useState(false)
+  const [selectedLanguage, setSelectedLanguage] = React.useState<any>(null)
+  const router = useRouter()
+
+  const changeLanguage = (language: (typeof languages)[0]) => {
+    setSelectedLanguage(language)
+    router.push(`/${language.id}`) // Update the URL with the selected locale
+  }
+
+  // Dynamically set default language based on `lang` prop
+  useEffect(() => {
+    const defaultLang = languages.find((language) => language.id === lang)
+    if (defaultLang) {
+      setSelectedLanguage(defaultLang)
+    } else {
+      setSelectedLanguage(languages[0])
+    }
+  }, [lang])
+
+  return (
+    <Disclosure as="nav" className="navbar">
+      <>
+        <div className="mx-auto lg:px-8 p-3 md:p-4 max-w-7xl">
+          <div className="relative flex items-center h-12 sm:h-20">
+            <div className="flex flex-1 sm:justify-between items-center">
+              {/* LOGO */}
+              <div className="flex flex-shrink-0 items-center">
+                <Link href="/" className="font-semibold text-2xl text-black sm:text-4xl">
+                  <img src="/Foundasi.svg" alt="foundasi" />
+                </Link>
+              </div>
+
+              {/* LINKS */}
+              <div className="lg:flex items-center hidden">
+                <div className="flex justify-end space-x-4">
+                  {navigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={classNames(
+                        item.current ? 'bg-gray-900' : 'navlinks hover:text-black',
+                        'px-3 py-4 rounded-md text-lg font-normal',
+                      )}
+                      aria-current={item.href ? 'page' : undefined}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <Contactusform />
+            </div>
+
+            {/* LANGUAGE SELECTOR */}
+            <div className="max-lg:mr-2 lg:ml-4">
+              {selectedLanguage != null && (
+                <Listbox value={selectedLanguage} onChange={changeLanguage}>
+                  <div className="relative">
+                    <ListboxButton className="flex items-center gap-2 p-2">
+                      <img
+                        src={selectedLanguage.flag}
+                        alt={selectedLanguage.name}
+                        className="w-5 h-5"
+                      />
+                      {selectedLanguage.name}
+                    </ListboxButton>
+                    <ListboxOptions className="absolute bg-white shadow mt-1 rounded w-28 overflow-hidden">
+                      {languages.map((language) => (
+                        <ListboxOption
+                          key={language.id}
+                          value={language}
+                          className={({ active }) =>
+                            `cursor-pointer select-none hover:bg-blue hover:text-white p-2 flex items-center gap-2 ${
+                              active ? 'bg-blue-100' : ''
+                            }`
+                          }
+                        >
+                          <img src={language.flag} alt={language.name} className="w-5 h-5" />
+                          {language.name}
+                        </ListboxOption>
+                      ))}
+                    </ListboxOptions>
+                  </div>
+                </Listbox>
+              )}
+            </div>
+
+            {/* DRAWER FOR MOBILE VIEW */}
+            <div className="block lg:hidden">
+              <Bars3Icon
+                className="block w-6 h-6"
+                aria-hidden="true"
+                onClick={() => setIsOpen(true)}
+              />
+            </div>
+            <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
+              <Drawerdata />
+            </Drawer>
+          </div>
+        </div>
+      </>
+    </Disclosure>
+  )
+}
+
+export default Navbar

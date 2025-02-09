@@ -6,12 +6,15 @@ import Featured from './components/Featured/index'
 import FAQ from './components/FAQ/index'
 import Joinus from './components/Joinus/index'
 import Insta from './components/Insta/index'
+import { Lang } from '@/types'
 
-export default function Home() {
+export default async function Home({ params }: { params: Promise<{ lang: Lang }> }) {
+  const { lang } = await params
+
   return (
     <main className="overflow-x-hidden">
-      <Banner />
-      <Aboutus />
+      <Banner lang={lang} />
+      <Aboutus lang={lang} />
       <Digital />
       <Beliefs />
       <Featured />

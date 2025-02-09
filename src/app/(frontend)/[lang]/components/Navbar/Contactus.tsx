@@ -2,8 +2,36 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import Link from 'next/link'
+import { Lang } from '@/types'
 
-const Contactusform = () => {
+const sentences = {
+  btnContactUs: {
+    en: 'Contact Us',
+    id: 'Hubungi Kami',
+  },
+  titleForm: {
+    en: 'Contact us now? Want to send us a feedback?',
+    id: 'Ingin menghubungi kami? atau ada yang ingin disampaikan?',
+  },
+  labelName: {
+    en: 'Your Name',
+    id: 'Nama Anda',
+  },
+  labelEmail: {
+    en: 'Your Email',
+    id: 'Alamat Email Anda',
+  },
+  labelMessage: {
+    en: 'Your Message',
+    id: 'Pesan Anda',
+  },
+  labelSubmit: {
+    en: 'Send Message',
+    id: 'Kirim Pesan',
+  },
+}
+
+const Contactusform = ({ lang }: { lang: Lang }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -60,23 +88,23 @@ const Contactusform = () => {
     <>
       <div className="right-0 sm:static inset-y-0 sm:inset-auto flex items-center md:ml-6 pr-2 sm:pr-0">
         {/* <div className='lg:hidden'>
-                    <button type="button" className='border-purple bg-navyblue px-4 py-2 border rounded w-full font-medium text-white hover:text-white' onClick={openModal}>
+                    <button type="button" className='bg-navyblue px-4 py-2 border border-purple rounded w-full font-medium text-white hover:text-white' onClick={openModal}>
                         Contact Us
                     </button>
                 </div> */}
-        <div className="lg:block hidden">
+        <div className="hidden lg:block">
           <button
             type="button"
-            className="justify-end bg-transparent hover:bg-navyblue px-6 lg:px-12 py-4 rounded-full font-semibold text-xl hover:text-white navbutton"
+            className="justify-end bg-transparent hover:bg-navyblue px-6 lg:px-12 py-4 rounded-full font-semibold hover:text-white text-xl navbutton"
             onClick={openModal}
           >
-            Contact Us
+            {sentences.btnContactUs[lang]}
           </button>
         </div>
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-50" onClose={closeModal}>
+        <Dialog as="div" className="z-50 relative" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -100,23 +128,23 @@ const Contactusform = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="bg-white shadow-xl p-6 rounded-2xl w-full max-w-md text-left transform transition-all overflow-hidden align-middle">
+                <Dialog.Panel className="bg-white shadow-xl p-6 rounded-2xl w-full max-w-md overflow-hidden text-left align-middle transition-all transform">
                   <div className="mx-auto px-4 py-8 lg:py-8 max-w-screen-md">
                     <div className="flex flex-shrink-0 justify-center items-center">
-                      <Link href="/" className="font-semibold text-2xl text-black sm:text-4xl">
+                      <Link href="/" className="font-semibold text-black text-2xl sm:text-4xl">
                         Foundasi
                       </Link>
                     </div>
-                    <p className="mt-6 mb-6 lg:mb-8 font-light text-center text-gray-500 sm:text-xl dark:text-gray-400">
-                      Contact us now? Want to send us a feedback?
+                    <p className="mt-6 mb-6 lg:mb-8 font-light text-gray-500 dark:text-gray-400 sm:text-xl text-center">
+                      {sentences.titleForm[lang]}
                     </p>
                     <form action="#" className="space-y-6" onSubmit={handleSubmit}>
                       <div>
                         <label
                           htmlFor="text"
-                          className="block mb-2 font-medium text-gray-900 text-sm dark:text-gray-300"
+                          className="block mb-2 font-medium text-gray-900 dark:text-gray-300 text-sm"
                         >
-                          Your Name
+                          {sentences.labelName[lang]}
                         </label>
                         <input
                           id="text"
@@ -126,16 +154,16 @@ const Contactusform = () => {
                           type="text"
                           autoComplete="current-password"
                           required
-                          className="block relative focus:z-10 focus:border-indigo-500 px-3 py-2 border border-linegrey rounded-md focus:ring-indigo-500 w-full text-gray-900 sm:text-sm appearance-none focus:outline-none placeholder-gray-500"
+                          className="block focus:z-10 relative px-3 py-2 border focus:border-indigo-500 border-linegrey rounded-md focus:outline-none focus:ring-indigo-500 w-full text-gray-900 sm:text-sm appearance-none placeholder-gray-500"
                           placeholder="Name..."
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="email"
-                          className="block mb-2 font-medium text-gray-900 text-sm dark:text-gray-300"
+                          className="block mb-2 font-medium text-gray-900 dark:text-gray-300 text-sm"
                         >
-                          Your email
+                          {sentences.labelEmail[lang]}
                         </label>
                         <input
                           id="email"
@@ -145,32 +173,32 @@ const Contactusform = () => {
                           type="email"
                           autoComplete="current-password"
                           required
-                          className="block relative focus:z-10 focus:border-indigo-500 px-3 py-2 border border-linegrey rounded-md focus:ring-indigo-500 w-full text-gray-900 sm:text-sm appearance-none focus:outline-none placeholder-gray-500"
+                          className="block focus:z-10 relative px-3 py-2 border focus:border-indigo-500 border-linegrey rounded-md focus:outline-none focus:ring-indigo-500 w-full text-gray-900 sm:text-sm appearance-none placeholder-gray-500"
                           placeholder="xyz@email.com"
                         />
                       </div>
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="message"
-                          className="block mb-2 font-medium text-gray-900 text-sm dark:text-gray-400"
+                          className="block mb-2 font-medium text-gray-900 dark:text-gray-400 text-sm"
                         >
-                          Your message
+                          {sentences.labelMessage[lang]}
                         </label>
                         <textarea
                           id="message"
                           name="messages"
                           value={inputValues.messages}
                           onChange={handleChange}
-                          className="block relative focus:z-10 focus:border-indigo-500 px-3 py-2 border border-linegrey rounded-md focus:ring-indigo-500 w-full text-gray-900 sm:text-sm appearance-none focus:outline-none placeholder-gray-500"
+                          className="block focus:z-10 relative px-3 py-2 border focus:border-indigo-500 border-linegrey rounded-md focus:outline-none focus:ring-indigo-500 w-full text-gray-900 sm:text-sm appearance-none placeholder-gray-500"
                           placeholder="Leave a comment..."
                         ></textarea>
                       </div>
                       <button
                         type="submit"
                         disabled={isDisabled || isLoading}
-                        className="bg-blue dark:hover:bg-primary-700 dark:bg-primary-600 disabled:opacity-50 px-5 py-3 rounded-lg focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800 w-full font-medium text-center text-sm text-white focus:outline-none"
+                        className="bg-blue dark:hover:bg-primary-700 dark:bg-primary-600 disabled:opacity-50 px-5 py-3 rounded-lg focus:outline-none focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800 w-full font-medium text-white text-sm text-center"
                       >
-                        Send message
+                        {sentences.labelSubmit[lang]}
                       </button>
                     </form>
                   </div>

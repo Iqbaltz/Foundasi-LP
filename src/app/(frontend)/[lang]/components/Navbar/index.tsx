@@ -1,10 +1,11 @@
 /* eslint-disable */
 
 'use client'
+import { Lang } from '@/types'
 import Navbar from './Navbar'
 import React, { useEffect } from 'react'
 
-const Navbarin: React.FC<{ lang: string }> = ({ lang }) => {
+const Navbarin: React.FC<{ lang: Lang }> = ({ lang }) => {
   useEffect(() => {
     // The debounce function receives our function as a parameter
     const debounce = (fn: Function) => {

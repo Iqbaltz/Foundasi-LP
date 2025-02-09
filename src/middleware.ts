@@ -1,27 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const locales = ['en-US', 'id-ID', 'id']
+const supportedLocales = ['en', 'id']
 
-// Get the preferred locale, similar to the above or using a library
-function getLocale(request: NextRequest) {
+// Function to get the preferred locale from the "Accept-Language" header
+function getLocale(request: NextRequest): string {
   const preferredLocale = request.headers.get('Accept-Language')?.split(',')[0].trim()
-  return preferredLocale || 'en-US'
+  if (preferredLocale?.startsWith('en')) return 'en'
+  if (preferredLocale?.startsWith('id')) return 'id'
+  return 'en' // Default to English
 }
 
 export function middleware(request: NextRequest) {
-  // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl
-  const pathnameHasLocale = locales.some(
+
+  // Check if the pathname already includes a supported locale
+  const hasLocale = supportedLocales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
 
-  if (pathnameHasLocale) return
+  if (hasLocale) {
+    // Allow the request to proceed if a supported locale is present
+    return
+  }
 
-  // Redirect if there is no locale
+  // Determine the locale and redirect to the appropriate path
   const locale = getLocale(request)
   request.nextUrl.pathname = `/${locale}${pathname}`
-  // e.g. incoming request is /products
-  // The new URL is now /en-US/products
+
   return NextResponse.redirect(request.nextUrl)
 }
 

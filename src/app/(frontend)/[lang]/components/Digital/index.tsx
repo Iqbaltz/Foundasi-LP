@@ -2,24 +2,24 @@ import Image from 'next/image'
 
 const Digital = () => {
   return (
-    <div className="mx-2">
-      <div className="relative px-4 pb-20 mx-auto mt-40 max-w-7xl lg:pb-40 lg:px-8 bg-digital rounded-3xl bg-blue">
-        <div className="grid grid-cols-1 my-16 lg:grid-cols-2">
+    <div className="mx-2" id="services-section">
+      <div className="relative bg-blue bg-digital mx-auto mt-40 px-4 lg:px-8 pb-20 lg:pb-40 rounded-3xl max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 my-16">
           {/* COLUMN-1 */}
 
-          <div className="pt-24 lg:pl-24 ">
-            <h3 className="mb-5 text-lg font-normal tracking-widest text-center text-white lg:text-start">
+          <div className="pt-24 lg:pl-24">
+            <h3 className="mb-5 font-normal text-white text-lg text-center lg:text-start tracking-widest">
               DIGITAL SOLUTIONS
             </h3>
-            <h4 className="mb-8 text-4xl font-bold leading-snug text-center text-white sm:text-6xl lg:text-start">
+            <h4 className="mb-8 font-bold text-white text-4xl sm:text-6xl text-center lg:text-start leading-snug">
               We’re building <br />{' '}
-              <span className="text-5xl sm:text-7xl text-[#FFD700] font-extrabold">
+              <span className="font-extrabold text-[#FFD700] text-5xl sm:text-7xl">
                 future-ready
               </span>{' '}
               <br /> software for seamless growth.
             </h4>
             <div className="text-center lg:text-start">
-              <button className="px-12 py-4 text-xl font-semibold text-white rounded-full bg-btnblue hover:bg-hoblue">
+              <button className="bg-btnblue hover:bg-hoblue px-12 py-4 rounded-full font-semibold text-white text-xl">
                 Let’s Build Together
               </button>
             </div>

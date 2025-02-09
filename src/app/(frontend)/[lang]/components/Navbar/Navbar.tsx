@@ -14,31 +14,33 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 import Drawer from './Drawer'
 import Drawerdata from './Drawerdata'
 import Contactusform from './Contactus'
+import { Lang, LocalizedString } from '@/types'
 
 interface NavigationItem {
-  name: string
+  name: LocalizedString
   href: string
   current: boolean
 }
 
 const navigation: NavigationItem[] = [
-  { name: 'About Us', href: '#aboutus-section', current: false },
-  { name: 'Services', href: '#services-section', current: false },
-  { name: 'FAQ', href: '#faq-section', current: false },
-  { name: 'Blog', href: '#blog-section', current: false },
-  { name: 'Testimonial', href: '#testimonial-section', current: false },
+  { name: { id: 'Tentang Kami', en: 'About Us' }, href: '#aboutus-section', current: false },
+  { name: { id: 'Layanan', en: 'Services' }, href: '#services-section', current: false },
+  { name: { id: 'Karya Kami', en: 'Our Work' }, href: '#featured-works', current: false },
+  { name: { id: 'Pertanyaan', en: 'FAQ' }, href: '#faq-section', current: false },
+  // { name: { id: 'Artikel', en: 'Blog' }, href: '#blog-section', current: false },
+  // { name: { id: 'Testimoni', en: 'Testimonial' }, href: '#testimonial-section', current: false },
 ]
 
 const languages = [
-  { id: 'en-US', name: 'English', flag: '/images/flags/united-states.png' },
-  { id: 'id-ID', name: 'Indonesia', flag: '/images/flags/indonesia.png' },
+  { id: 'en', name: 'English', flag: '/images/flags/united-states.png' },
+  { id: 'id', name: 'Indonesia', flag: '/images/flags/indonesia.png' },
 ]
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Navbar = ({ lang }: { lang: string }) => {
+const Navbar = ({ lang }: { lang: Lang }) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const [selectedLanguage, setSelectedLanguage] = React.useState<any>(null)
   const router = useRouter()
@@ -61,22 +63,22 @@ const Navbar = ({ lang }: { lang: string }) => {
   return (
     <Disclosure as="nav" className="navbar">
       <>
-        <div className="mx-auto lg:px-8 p-3 md:p-4 max-w-7xl">
+        <div className="mx-auto p-3 md:p-4 lg:px-8 max-w-7xl">
           <div className="relative flex items-center h-12 sm:h-20">
             <div className="flex flex-1 sm:justify-between items-center">
               {/* LOGO */}
               <div className="flex flex-shrink-0 items-center">
-                <Link href="/" className="font-semibold text-2xl text-black sm:text-4xl">
+                <Link href="/" className="font-semibold text-black text-2xl sm:text-4xl">
                   <img src="/Foundasi.svg" alt="foundasi" />
                 </Link>
               </div>
 
               {/* LINKS */}
-              <div className="lg:flex items-center hidden">
+              <div className="hidden lg:flex items-center">
                 <div className="flex justify-end space-x-4">
                   {navigation.map((item) => (
                     <Link
-                      key={item.name}
+                      key={item.name[lang]}
                       href={item.href}
                       className={classNames(
                         item.current ? 'bg-gray-900' : 'navlinks hover:text-black',
@@ -84,12 +86,12 @@ const Navbar = ({ lang }: { lang: string }) => {
                       )}
                       aria-current={item.href ? 'page' : undefined}
                     >
-                      {item.name}
+                      {item.name[lang]}
                     </Link>
                   ))}
                 </div>
               </div>
-              <Contactusform />
+              <Contactusform lang={lang} />
             </div>
 
             {/* LANGUAGE SELECTOR */}
@@ -127,7 +129,7 @@ const Navbar = ({ lang }: { lang: string }) => {
             </div>
 
             {/* DRAWER FOR MOBILE VIEW */}
-            <div className="block lg:hidden">
+            <div className="lg:hidden block">
               <Bars3Icon
                 className="block w-6 h-6"
                 aria-hidden="true"

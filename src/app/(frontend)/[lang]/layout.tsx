@@ -1,6 +1,8 @@
 import './globals.css'
 import Navbar from './components/Navbar/index'
 import Footer from './components/Footer/index'
+import { Lang } from '@/types'
+import { ToastContainer } from 'react-toastify'
 
 export const metadata = {
   title: 'Foundasi',
@@ -13,15 +15,16 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode
-  params: Promise<{ lang: string }>
+  params: Promise<{ lang: Lang }>
 }) {
-  const { lang } = (await params) || 'en'
+  const { lang } = await params
 
   return (
     <html lang={lang}>
       <body>
         <Navbar lang={lang} />
         {children}
+        <ToastContainer />
         <Footer />
       </body>
     </html>

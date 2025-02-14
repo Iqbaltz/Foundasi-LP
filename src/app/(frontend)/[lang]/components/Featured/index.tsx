@@ -69,14 +69,19 @@ function SamplePrevArrow(props: { className: any; style: any; onClick: any }) {
   )
 }
 
-export default class MultipleItems extends Component {
+interface MultipleItemsProps {
+  lang: string;
+}
+
+export default class MultipleItems extends Component<MultipleItemsProps> {
   render() {
+    const { lang } = this.props;
     const settings = {
       dots: false,
       infinite: true,
       slidesToShow: 2,
-      // centerMode: true,
       slidesToScroll: 1,
+      // centerMode: true,
       arrows: true,
       autoplay: false,
       speed: 500,
@@ -94,7 +99,7 @@ export default class MultipleItems extends Component {
           },
         },
       ],
-    }
+    };
 
     return (
       <div className="bg-bgblue bg-featured py-20 marginFeature">
@@ -134,6 +139,6 @@ export default class MultipleItems extends Component {
           </Slider>
         </div>
       </div>
-    )
+    );
   }
 }

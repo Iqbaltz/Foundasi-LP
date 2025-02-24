@@ -22,6 +22,7 @@
     "@payloadcms/next": "latest",
     "@payloadcms/payload-cloud": "latest",
     "@payloadcms/richtext-lexical": "latest",
+    "@payloadcms/storage-vercel-blob": "^3.24.0",
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
     "dns": "^0.2.2",

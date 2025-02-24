@@ -55,9 +55,10 @@ const Aboutdata: datatype[] = [
     link: '#featured-works',
   },
 ]
+
 const Aboutus = ({ lang }: { lang: Lang }) => {
   const handleComingSoon = (url: string) => {
-    if (url == '#') toast.info('We’re still working on that 😁🙏')
+    if (url == '#') toast.info('We’re still working on that 🔥🧑‍💻')
   }
   return (
     <div id="aboutus-section">

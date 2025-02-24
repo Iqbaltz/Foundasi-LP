@@ -6,17 +6,25 @@ import Beliefs from './components/Beliefs/index'
 import Featured from './components/Featured/index'
 import FAQ from './components/FAQ/index'
 import Joinus from './components/Joinus/index'
-import Insta from './components/Insta/index'
 import parser from 'html-react-parser'
 import { Lang } from '@/types'
 import { useEffect, useState } from 'react'
+import Articles from './components/Articles'
+import { PaginatedDocs } from 'payload'
+import { Blog } from '@/payload-types'
 
 export default function Home({ params }: { params: Promise<{ lang: Lang }> }) {
   const [lang, setLang] = useState<Lang>('en')
+  const [blogs, setBlogs] = useState<Blog[]>()
 
   useEffect(() => {
     const init = async () => {
       const { lang } = await params
+      const res = await fetch('/api/blogs?limit=5')
+      console.log('res', res)
+      const resBlogs: PaginatedDocs<Blog> = await res.json()
+      setBlogs(resBlogs.docs)
+
       setLang(lang)
     }
     init()
@@ -31,7 +39,8 @@ export default function Home({ params }: { params: Promise<{ lang: Lang }> }) {
       <Featured lang={lang} />
       <FAQ lang={lang} parser={parser} />
       <Joinus lang={lang} parser={parser} />
-      <Insta />
+      <Articles blogs={blogs} />
+      {/* <Insta /> */}
     </main>
   )
 }

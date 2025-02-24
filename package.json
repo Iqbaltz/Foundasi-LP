@@ -24,8 +24,10 @@
     "@payloadcms/richtext-lexical": "latest",
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
+    "dns": "^0.2.2",
     "graphql": "^16.8.1",
     "html-react-parser": "^5.2.2",
+    "net": "^1.0.2",
     "next": "15.1.0",
     "nodemailer": "^6.10.0",
     "payload": "latest",
@@ -53,5 +55,11 @@
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }

@@ -13,6 +13,11 @@ function getLocale(request: NextRequest): string {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  // Skip the localization logic for /admin routes
+  if (pathname.startsWith('/admin') || pathname.startsWith('/api')) {
+    return
+  }
+
   // Check if the pathname already includes a supported locale
   const hasLocale = supportedLocales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
@@ -31,5 +36,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|icon\\.svg|favicon\\.ico|Foundasi\\.svg|images/).*)'],
+  matcher: ['/((?!_next|icon\\.svg|favicon\\.ico|Foundasi\\.svg|images/|admin|api).*)'],
 }

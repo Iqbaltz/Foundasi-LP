@@ -1,46 +1,17 @@
-'use client'
-import Banner from './components/Banner/index'
-import Aboutus from './components/Aboutus/index'
-import Digital from './components/Digital/index'
-import Beliefs from './components/Beliefs/index'
-import Featured from './components/Featured/index'
-import FAQ from './components/FAQ/index'
-import Joinus from './components/Joinus/index'
-import parser from 'html-react-parser'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 import { Lang } from '@/types'
-import { useEffect, useState } from 'react'
-import Articles from './components/Articles'
-import { PaginatedDocs } from 'payload'
-import { Blog } from '@/payload-types'
+import HomePage from './page.client'
 
-export default function Home({ params }: { params: Promise<{ lang: Lang }> }) {
-  const [lang, setLang] = useState<Lang>('en')
-  const [blogs, setBlogs] = useState<Blog[]>()
+export default async function Home({ params }: { params: Promise<{ lang: Lang }> }) {
+  const payload = await getPayload({ config })
+  const { lang } = await params
 
-  useEffect(() => {
-    const init = async () => {
-      const { lang } = await params
-      const res = await fetch('/api/blogs?limit=5')
-      console.log('res', res)
-      const resBlogs: PaginatedDocs<Blog> = await res.json()
-      setBlogs(resBlogs.docs)
-
-      setLang(lang)
-    }
-    init()
-  }, [])
+  const blogs = (await payload.find({ collection: 'blogs', limit: 5, draft: false })).docs
 
   return (
     <main className="overflow-x-hidden">
-      <Banner lang={lang} />
-      <Aboutus lang={lang} />
-      <Digital lang={lang} parser={parser} />
-      <Beliefs lang={lang} parser={parser} />
-      <Featured lang={lang} />
-      <FAQ lang={lang} parser={parser} />
-      <Joinus lang={lang} parser={parser} />
-      <Articles blogs={blogs} />
-      {/* <Insta /> */}
+      <HomePage lang={lang} blogs={blogs} />
     </main>
   )
 }

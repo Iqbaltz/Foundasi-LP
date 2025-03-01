@@ -159,6 +159,7 @@ export interface Media {
 export interface Blog {
   id: number;
   title: string;
+  slug: string;
   author: number | User;
   image: number | Media;
   content: {
@@ -281,6 +282,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface BlogsSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
   author?: T;
   image?: T;
   content?: T;

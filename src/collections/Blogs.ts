@@ -10,6 +10,27 @@ export const Blogs: CollectionConfig = {
       unique: true,
     },
     {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      admin: {
+        position: 'sidebar', // Moves it to the sidebar for clarity
+      },
+      hooks: {
+        beforeValidate: [
+          ({ data }) => {
+            if (data?.title) {
+              data.slug = data.title
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '') // Generate slug from title
+            }
+          },
+        ],
+      },
+    },
+    {
       name: 'author',
       type: 'relationship',
       relationTo: 'users',

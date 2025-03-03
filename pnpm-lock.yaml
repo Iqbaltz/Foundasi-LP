@@ -28,7 +28,7 @@ dependencies:
     specifier: latest
     version: 3.24.0(payload@3.24.0)
   '@payloadcms/richtext-lexical':
-    specifier: latest
+    specifier: ^3.24.0
     version: 3.24.0(@faceless-ui/modal@3.0.0-beta.2)(@faceless-ui/scroll-info@2.0.0)(@payloadcms/next@3.24.0)(@types/react@19.0.1)(monaco-editor@0.52.2)(next@15.1.0)(payload@3.24.0)(react-dom@19.0.0)(react@19.0.0)(typescript@5.7.2)(yjs@13.6.23)
   '@payloadcms/storage-vercel-blob':
     specifier: ^3.24.0

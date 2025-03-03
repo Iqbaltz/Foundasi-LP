@@ -3,7 +3,7 @@ import Slider from 'react-slick'
 import React, { Component } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Blog } from '@/payload-types'
+import { formatDate } from '@/lib/helpers'
 
 interface ArticlesProps {
   blogs: any
@@ -13,7 +13,6 @@ export default class Articles extends Component<ArticlesProps> {
   render() {
     const { blogs } = this.props
 
-    console.log('blogs', blogs)
     const settings = {
       dots: false,
       infinite: false,
@@ -58,7 +57,7 @@ export default class Articles extends Component<ArticlesProps> {
             {blogs &&
               blogs.map((items: any) => (
                 <div key={items.id}>
-                  <div className="relative bg-white shadow-lg m-3 my-10 px-3 pt-3 pb-12 rounded-3xl">
+                  <div className="relative bg-white shadow-lg m-3 my-10 px-3 pt-3 pb-4 rounded-3xl">
                     <Image
                       src={items.image.url}
                       alt="gaby"
@@ -72,15 +71,18 @@ export default class Articles extends Component<ArticlesProps> {
                         {items.time} read
                       </h3>
                     </Link> */}
-                    <h4 className="pt-6 font-bold text-black text-2xl">{items.title}</h4>
-                    {/* <h4 className="pt-1 font-bold text-black text-2xl">{items.heading2}</h4> */}
+                    <Link href={`/blogs/${items.slug}`}>
+                      <h4 className="pt-6 font-bold text-black text-2xl line-clamp-2">
+                        {items.title}
+                      </h4>
+                    </Link>
 
                     <div>
-                      <h3 className="opacity-75 pt-6 pb-2 font-normal text-base">
+                      <h3 className="opacity-75 pt-2 font-normal text-base">
                         {items.author['Full Name']}
                       </h3>
-                      <h3 className="opacity-75 pb-1 font-normal text-base">
-                        {new Date(items.createdAt).toLocaleDateString()}
+                      <h3 className="opacity-35 font-normal text-base">
+                        {formatDate(items.createdAt)}
                       </h3>
                     </div>
                   </div>

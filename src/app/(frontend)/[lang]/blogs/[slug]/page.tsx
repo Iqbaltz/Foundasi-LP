@@ -5,6 +5,7 @@ import NotFound from '../../not-found'
 import Image from 'next/image'
 import { formatDate } from '@/lib/helpers'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import { CalendarIcon, UserIcon } from '@heroicons/react/24/solid'
 
 export default async function BlogPage({
   params,
@@ -28,10 +29,15 @@ export default async function BlogPage({
   }
 
   return (
-    <div className="mx-auto my-32 p-4 max-w-[800px]">
+    <div className="mx-auto my-28 lg:my-32 px-4 max-w-[800px]">
       <h1 className="mb-4 font-bold text-3xl lg:text-5xl">{blog.title}</h1>
-      <p className="opacity-75">{blog.author?.['Full Name']}</p>
-      <p className="opacity-50 text-sm">{formatDate(blog.createdAt)}</p>
+      <p className="flex items-center gap-1 opacity-75">
+        <UserIcon className="w-4" /> {blog.author?.['Full Name']}
+      </p>
+      <p className="flex items-center gap-1 opacity-50 text-sm">
+        <CalendarIcon className="w-4" />
+        {formatDate(blog.createdAt)}
+      </p>
       {blog.image?.url && (
         <Image
           src={blog.image.url}

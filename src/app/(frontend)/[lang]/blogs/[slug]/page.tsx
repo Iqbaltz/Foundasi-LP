@@ -47,7 +47,7 @@ export default async function BlogPage({
           className="my-6 lg:mb-8 rounded max-h-96 object-cover"
         />
       )}
-      <RichText data={blog.content} />
+      <RichText className="font-[Merriweather] leading-loose" data={blog.content} />
     </div>
   )
 }

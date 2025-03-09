@@ -4,8 +4,8 @@ import { Lang } from '@/types'
 import NotFound from '../../not-found'
 import Image from 'next/image'
 import { formatDate } from '@/lib/helpers'
-import { RichText } from '@payloadcms/richtext-lexical/react'
 import { CalendarIcon, UserIcon } from '@heroicons/react/24/solid'
+import FoRichText from '../components/FoRichText'
 
 export default async function BlogPage({
   params,
@@ -29,7 +29,7 @@ export default async function BlogPage({
   }
 
   return (
-    <div className="mx-auto my-28 lg:my-32 px-4 max-w-[800px]">
+    <div className="font-[Merriweather] leading-relaxed mx-auto my-28 lg:my-32 px-4 max-w-[800px]">
       <h1 className="mb-4 font-bold text-3xl lg:text-5xl">{blog.title}</h1>
       <p className="flex items-center gap-1 opacity-75">
         <UserIcon className="w-4" /> {blog.author?.['Full Name']}
@@ -47,7 +47,7 @@ export default async function BlogPage({
           className="my-6 lg:mb-8 rounded max-h-96 object-cover"
         />
       )}
-      <RichText className="font-[Merriweather] leading-loose" data={blog.content} />
+      <FoRichText blog={blog} />
     </div>
   )
 }

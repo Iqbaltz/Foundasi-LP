@@ -10,27 +10,34 @@ const RichTextStyles = () => {
       .rich-text h1 {
         margin-top: 2rem; /* mt-8 equivalent */
         font-size: 2rem; /* text-4xl equivalent */
+        opacity: 0.75;
       }
       .rich-text h2 {
         margin-top: 1.5rem; /* mt-6 equivalent */
         font-size: 1.75rem; /* text-3xl equivalent */
+        opacity: 0.75;
       }
       .rich-text h3 {
         margin-top: 1rem; /* mt-4 equivalent */
         font-size: 1.425rem; /* text-2xl equivalent */
+        opacity: 0.75;
       }
       .rich-text h4 {
         margin-top: 0.75rem; /* mt-3 equivalent */
         font-size: 1.25rem; /* text-xl equivalent */
+        opacity: 0.75;
       }
       .rich-text h5,
       .rich-text h6 {
         margin-top: 0.5rem; /* mt-2 equivalent */
-        font-size: 1rem; /* text-lg equivalent */
+        font-size: 1.125rem; /* text-lg equivalent */
+        opacity: 0.75;
       }
       .rich-text p {
         margin-top: 0.5rem; /* mt-4 equivalent */
         line-height: 1.75; /* leading-relaxed equivalent */
+        font-size: 1.125rem; /* text-base equivalent */
+        opacity: 0.75;
       }
     `}</style>
   )

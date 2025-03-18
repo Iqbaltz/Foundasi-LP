@@ -29,9 +29,11 @@ export default async function BlogPage({
   }
 
   return (
-    <div className="h-full w-full bg-lightgrey">
-      <div className="font-[Merriweather] leading-relaxed mx-auto py-28 lg:py-32 px-4 max-w-[800px]">
-        <h1 className="mb-4 font-bold text-3xl opacity-75 lg:text-5xl">{blog.title}</h1>
+    <div className="bg-lightgrey w-full h-full">
+      <div className="mx-auto px-4 py-28 lg:py-32 max-w-[800px] leading-relaxed">
+        <h1 className="opacity-75 mb-4 w-full font-bold text-3xl lg:text-5xl/tight">
+          {blog.title}
+        </h1>
         <p className="flex items-center gap-1 opacity-75">
           <UserIcon className="w-4" /> {blog.author?.['Full Name']}
         </p>

@@ -45,6 +45,7 @@ const RichTextStyles = () => {
       }
       .rich-text p {
         margin-top: 0.5rem; /* mt-4 equivalent */
+        margin-bottom: 0.5rem; /* mt-4 equivalent */
         line-height: 1.75; /* leading-relaxed equivalent */
         font-size: 1.125rem; /* text-base equivalent */
         opacity: 0.75;
@@ -53,15 +54,22 @@ const RichTextStyles = () => {
         padding: 0.5em 1em;
       }
       .rich-text code {
-        background-color: #fff;
-        color: green;
-        padding: 4px;
-        border-radius: 4px;
+        color: limegreen;
+        padding: 4px 8px;
+      }
+      .rich-text p:has(code) {
+        margin: 0;
+        background-color: #000;
+        opacity: 1;
       }
       .rich-text hr {
         margin: 40px 0;
         border-top-width: 2px;
         border-color: #333;
+      }
+      .rich-text a {
+        color: darkblue;
+        text-decoration: underline;
       }
     `}</style>
   )

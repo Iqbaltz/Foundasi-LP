@@ -8,7 +8,7 @@ import {
   ListboxOptions,
 } from '@headlessui/react'
 import Link from 'next/link'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation' // For programmatic navigation
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import Drawer from './Drawer'
@@ -43,6 +43,8 @@ function classNames(...classes: string[]) {
 const Navbar = ({ lang }: { lang: Lang }) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const [selectedLanguage, setSelectedLanguage] = React.useState<any>(null)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
   const router = useRouter()
 
   const changeLanguage = (language: (typeof languages)[0]) => {
@@ -60,8 +62,24 @@ const Navbar = ({ lang }: { lang: Lang }) => {
     }
   }, [lang])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setIsVisible(false) // Hide navbar when scrolling down
+      } else {
+        setIsVisible(true) // Show navbar when scrolling up
+      }
+      setLastScrollY(window.scrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [lastScrollY])
+
   return (
-    <Disclosure as="nav" className="navbar">
+    <Disclosure as="nav" className={`navbar ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <>
         <div className="mx-auto p-3 md:p-4 lg:px-8 max-w-7xl">
           <div className="relative flex items-center h-12 sm:h-20">

@@ -24,9 +24,9 @@ html:not([data-scroll='0']) .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  transition: 0.4s linear;
   padding: 0px !important;
   z-index: 30;
+  transition: 0.3s ease-in-out;
 }
 
 .navbar > div > div {
@@ -37,13 +37,13 @@ html:not([data-scroll='0']) .navbar {
   height: 4rem;
 }
 
+.navbar {
+  border-bottom: 0.5px solid rgba(196, 196, 196, 0.75);
+}
+
 html {
   --scroll-behavior: smooth !important;
   scroll-behavior: smooth !important;
-}
-
-.navbar {
-  border-bottom: 0.5px solid rgba(196, 196, 196, 0.75);
 }
 
 .hover-underline {
@@ -198,7 +198,8 @@ html {
 }
 
 .bg-testimonial {
-  background-image: url('/images/wework/elipse.svg'), url('/images/testimonial/boy.svg'),
+  background-image:
+    url('/images/wework/elipse.svg'), url('/images/testimonial/boy.svg'),
     url('/images/testimonial/girl.svg');
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-position:

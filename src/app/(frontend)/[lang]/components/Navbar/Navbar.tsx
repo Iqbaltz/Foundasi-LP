@@ -45,38 +45,48 @@ const Navbar = ({ lang }: { lang: Lang }) => {
   const [selectedLanguage, setSelectedLanguage] = React.useState<any>(null)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [scrollUpDistance, setScrollUpDistance] = useState(0)
+  const [scrollDownDistance, setScrollDownDistance] = useState(0)
   const router = useRouter()
+
+  const SCROLL_UP_TOLERANCE = 100 // Amount to scroll up before showing navbar
+  const SCROLL_DOWN_TOLERANCE = 150 // Amount to scroll down before hiding navbar
 
   const changeLanguage = (language: (typeof languages)[0]) => {
     setSelectedLanguage(language)
     router.push(`/${language.id}`) // Update the URL with the selected locale
   }
 
-  // Dynamically set default language based on `lang` prop
-  useEffect(() => {
-    const defaultLang = languages.find((language) => language.id === lang)
-    if (defaultLang) {
-      setSelectedLanguage(defaultLang)
-    } else {
-      setSelectedLanguage(languages[0])
-    }
-  }, [lang])
-
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setIsVisible(false) // Hide navbar when scrolling down
+      const currentScrollY = window.scrollY
+
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setScrollUpDistance(0) // Reset scroll-up tracking
+        setScrollDownDistance((prev) => prev + (currentScrollY - lastScrollY))
+
+        if (scrollDownDistance > SCROLL_DOWN_TOLERANCE) {
+          setIsVisible(false) // Hide navbar if scroll down past tolerance
+        }
       } else {
-        setIsVisible(true) // Show navbar when scrolling up
+        // Scrolling up
+        setScrollDownDistance(0) // Reset scroll-down tracking
+        setScrollUpDistance((prev) => prev + (lastScrollY - currentScrollY))
+
+        if (scrollUpDistance > SCROLL_UP_TOLERANCE) {
+          setIsVisible(true) // Show navbar if scroll up past tolerance
+        }
       }
-      setLastScrollY(window.scrollY)
+
+      setLastScrollY(currentScrollY)
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [lastScrollY])
+  }, [lastScrollY, scrollUpDistance, scrollDownDistance])
 
   return (
     <Disclosure as="nav" className={`navbar ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>

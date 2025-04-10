@@ -61,6 +61,7 @@ const RichTextStyles = () => {
         margin: 0;
         background-color: #000;
         opacity: 1;
+        overflow-x: auto;
       }
       .rich-text hr {
         margin: 40px 0;

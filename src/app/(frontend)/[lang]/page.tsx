@@ -9,9 +9,17 @@ export default async function Home({ params }: { params: Promise<{ lang: Lang }>
 
   const blogs = (await payload.find({ collection: 'blogs', limit: 5, draft: false })).docs
 
+  const projects = (
+    await payload.find({
+      collection: 'projects',
+      limit: 5,
+      draft: false,
+    })
+  ).docs
+
   return (
     <main className="overflow-x-hidden">
-      <HomePage lang={lang} blogs={blogs} />
+      <HomePage lang={lang} blogs={blogs} projects={projects} />
     </main>
   )
 }

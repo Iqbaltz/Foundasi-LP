@@ -11,20 +11,22 @@ import { Lang } from '@/types'
 import React from 'react'
 import Articles from './components/Articles'
 import { Blog } from '@/payload-types'
+import { Project } from '@/payload-types'
 
 interface HomePageProps {
   lang: Lang
   blogs: Blog[]
+  projects: Project[]
 }
 
-export default function HomePage({ lang, blogs }: HomePageProps) {
+export default function HomePage({ lang, blogs, projects }: HomePageProps) {
   return (
     <React.Fragment>
       <Banner lang={lang} />
       <Aboutus lang={lang} />
       <Digital lang={lang} parser={parser} />
       <Beliefs lang={lang} parser={parser} />
-      <Featured lang={lang} />
+      <Featured lang={lang} projects={projects} />
       <FAQ lang={lang} parser={parser} />
       <Joinus lang={lang} parser={parser} />
       <Articles blogs={blogs} />

@@ -33,12 +33,14 @@ export const Projects: CollectionConfig = {
     {
       name: 'images',
       type: 'array',
+      minRows: 1,
       fields: [
         {
           name: 'image',
           type: 'upload',
           relationTo: 'media',
           required: true,
+          displayPreview: true,
         },
       ],
     },
@@ -48,4 +50,7 @@ export const Projects: CollectionConfig = {
       required: true,
     },
   ],
+  admin: {
+    useAsTitle: 'title',
+  },
 }

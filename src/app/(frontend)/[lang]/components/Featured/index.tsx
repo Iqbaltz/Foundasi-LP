@@ -3,34 +3,7 @@ import Slider from 'react-slick'
 import React, { Component } from 'react'
 import Image from 'next/image'
 
-// CAROUSEL DATA
-
-interface DataType {
-  heading: string
-  imgSrc: string
-}
-
-const postData: DataType[] = [
-  {
-    heading: 'Brand design for a computer brand.',
-    imgSrc: '/images/featured/feat1.jpg',
-  },
-  {
-    heading: 'Mobile app 3d wallpaper.',
-    imgSrc: '/images/featured/feat2.jpg',
-  },
-  {
-    heading: 'Brand design for a computer brand.',
-    imgSrc: '/images/featured/feat1.jpg',
-  },
-  {
-    heading: 'Mobile app 3d wallpaper.',
-    imgSrc: '/images/featured/feat2.jpg',
-  },
-]
-
 // CAROUSEL SETTINGS
-
 function SampleNextArrow(props: { className: any; style: any; onClick: any }) {
   const { className, style, onClick } = props
   return (
@@ -70,12 +43,14 @@ function SamplePrevArrow(props: { className: any; style: any; onClick: any }) {
 }
 
 interface MultipleItemsProps {
-  lang: string;
+  lang: string
+  projects: any
 }
 
 export default class MultipleItems extends Component<MultipleItemsProps> {
   render() {
-    const { lang } = this.props;
+    const { lang, projects } = this.props
+
     const settings = {
       dots: false,
       infinite: true,
@@ -99,7 +74,7 @@ export default class MultipleItems extends Component<MultipleItemsProps> {
           },
         },
       ],
-    };
+    }
 
     return (
       <div className="bg-bgblue bg-featured py-20 marginFeature">
@@ -118,20 +93,21 @@ export default class MultipleItems extends Component<MultipleItemsProps> {
           </div>
 
           <Slider {...settings}>
-            {postData.map((items, i) => (
+            {projects.map((items: any, i: number) => (
               <div key={i}>
                 <div className="bg-transparent m-3 my-10 pb-12 rounded-3xl">
                   <Image
-                    src={items.imgSrc}
+                    src={items?.images?.[0].image.url}
                     alt="gaby"
                     width={636}
                     height={620}
-                    className="rounded-2xl"
+                    className="rounded-2xl h-[360px] object-cover"
                   />
                   <div className="w-345">
-                    <h4 className="mt-10 sm:pt-6 font-bold text-white sm:text-5xl text-center sm:text-start">
-                      {items.heading}
+                    <h4 className="mt-6 sm:pt-2 font-bold text-white sm:text-4xl text-center sm:text-start">
+                      {items?.title}
                     </h4>
+                    <p className="pt-2 text-white text-lg">{items?.description}</p>
                   </div>
                 </div>
               </div>
@@ -139,6 +115,6 @@ export default class MultipleItems extends Component<MultipleItemsProps> {
           </Slider>
         </div>
       </div>
-    );
+    )
   }
 }

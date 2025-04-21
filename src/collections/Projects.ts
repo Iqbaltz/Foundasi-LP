@@ -45,6 +45,14 @@ export const Projects: CollectionConfig = {
       ],
     },
     {
+      name: 'site url',
+      type: 'text',
+      custom: {
+        regex: /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}([\/\w .-]*)*\/?$/i,
+        errorMessage: 'Please enter a valid URL',
+      },
+    },
+    {
       name: 'description',
       type: 'textarea',
       required: true,

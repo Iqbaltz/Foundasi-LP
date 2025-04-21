@@ -42,7 +42,9 @@ function classNames(...classes: string[]) {
 
 const Navbar = ({ lang }: { lang: Lang }) => {
   const [isOpen, setIsOpen] = React.useState(false)
-  const [selectedLanguage, setSelectedLanguage] = React.useState<any>(null)
+  const [selectedLanguage, setSelectedLanguage] = React.useState<any>(
+    languages.find((langObj) => langObj.id === lang),
+  )
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [scrollUpDistance, setScrollUpDistance] = useState(0)

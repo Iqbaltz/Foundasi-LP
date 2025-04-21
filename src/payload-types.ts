@@ -214,6 +214,7 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
+  'site url'?: string | null;
   description: string;
   updatedAt: string;
   createdAt: string;
@@ -368,6 +369,7 @@ export interface ProjectsSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  'site url'?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;

@@ -103,11 +103,25 @@ export default class MultipleItems extends Component<MultipleItemsProps> {
                     height={620}
                     className="rounded-2xl h-[360px] object-cover"
                   />
-                  <div className="w-345">
-                    <h4 className="mt-6 sm:pt-2 font-bold text-white sm:text-4xl text-center sm:text-start">
-                      {items?.title}
-                    </h4>
-                    <p className="pt-2 text-white text-lg">{items?.description}</p>
+                  <div className="flex justify-between">
+                    <div className="w-345">
+                      <h4 className="mt-6 sm:pt-2 font-bold text-white sm:text-4xl text-center sm:text-start">
+                        {items?.title}
+                      </h4>
+                      <p className="pt-2 text-white text-lg">{items?.description}</p>
+                    </div>
+                    <div className="flex justify-center items-center w-1/2 sm:w-1/3">
+                      <a
+                        key={i}
+                        href={items?.['site url']}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <button className="bg-white hover:bg-lightblue hover:shadow-xl px-6 py-3 rounded-full font-bold text-blue text-lg">
+                          {lang === 'en' ? 'Visit Site' : 'Kunjungi Web'}
+                        </button>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

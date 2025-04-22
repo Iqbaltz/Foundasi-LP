@@ -117,7 +117,7 @@ export default class MultipleItems extends Component<MultipleItemsProps> {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <button className="bg-white hover:bg-lightblue hover:shadow-xl px-6 py-3 rounded-full font-bold text-blue text-lg">
+                        <button className="bg-white hover:bg-navyblue hover:shadow-xl px-6 py-3 rounded-full font-bold text-blue hover:text-white text-lg">
                           {lang === 'en' ? 'Visit Site' : 'Kunjungi Web'}
                         </button>
                       </a>

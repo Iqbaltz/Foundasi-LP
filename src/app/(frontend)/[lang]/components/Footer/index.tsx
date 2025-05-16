@@ -39,7 +39,7 @@ const footer = () => {
           {/* COLUMN-1 */}
 
           <div className="col-span-4">
-            <h3 className="mb-4 lg:mb-20 font-semibold text-4xl text-white leading-9">
+            <h3 className="mb-4 lg:mb-20 font-semibold text-white text-4xl leading-9">
               {' '}
               Foundasi Solutions
             </h3>
@@ -70,12 +70,12 @@ const footer = () => {
           {/* CLOUMN-2/3 */}
 
           {products.map((product) => (
-            <div key={product.id} className="relative col-span-2 group">
+            <div key={product.id} className="group relative col-span-2">
               <p className="mb-9 font-extrabold text-white text-xl">{product.section}</p>
               <ul>
                 {product.link.map((link: string, index: number) => (
                   <li key={index} className="mb-5">
-                    <Link href="/" className="mb-6 font-normal text-lg text-white space-links">
+                    <Link href="/" className="mb-6 font-normal text-white text-lg space-links">
                       {link}
                     </Link>
                   </li>
@@ -89,14 +89,14 @@ const footer = () => {
       {/* All Rights Reserved */}
 
       <div className="mx-auto max-w-2xl lg:max-w-7xl">
-        <div className="border-footer px-4 sm:px-6 lg:px-4 pt-5 pb-5 border-t border-solid">
+        <div className="px-4 sm:px-6 lg:px-4 pt-5 pb-5 border-footer border-t border-solid">
           <div className="gap-x-16 gap-y-10 xl:gap-x-8 grid grid-cols-1 sm:grid-cols-2 mt-4">
             <div>
-              <h3 className="text-center text-lg text-offwhite md:text-start">
-                @2023 - All Rights Reserved by{' '}
-                <Link href="https://adminmart.com/" target="_blank">
+              <h3 className="text-offwhite text-lg text-center md:text-start">
+                @2025 - All Rights Reserved by{' '}
+                <Link href="https://iqbaldev.pro/" target="_blank">
                   {' '}
-                  Adminmart.com
+                  iqbaldev.pro
                 </Link>
               </h3>
             </div>
@@ -105,7 +105,7 @@ const footer = () => {
                 <h3 className="pr-6 text-offwhite">Privacy policy</h3>
               </Link>
               <Link href="/">
-                <h3 className="border-footer pl-6 border-l border-solid text-offwhite">
+                <h3 className="pl-6 border-footer border-l border-solid text-offwhite">
                   Terms & conditions
                 </h3>
               </Link>
